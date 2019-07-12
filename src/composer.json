@@ -1,0 +1,16 @@
+{
+	"name" : "wfelipew/pg-conf2019",
+	"description" : "Application to demonstrate the use of Migrations ",
+	"type" : "project",
+	"license" : "BSD-3-Clause",
+	"config" : {
+		"sort-packages" : true
+	},
+	"require" : {
+		"php" : "^5.6 || ^7.0",
+		"robmorgan/phinx": "^0.10.8"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "^6.0.8 || ^5.7.15"
+	}
+}

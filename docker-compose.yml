@@ -1,0 +1,35 @@
+version: "2"
+
+volumes:
+  cache_gamification:
+  pgdata-vol:
+
+services:
+  base:
+    image: hello-world 
+    build:
+      dockerfile: Dockerfile
+      context: .
+
+  web:
+    container_name: php
+    image: hello-world
+    env_file:
+      - .env
+    volumes:
+     - cache_gamification:/var/www/app/data/cache
+     - ./src:/var/www/html/
+    ports:
+     - "8080:80"
+  
+  database:
+    image: postgres:10
+    ports:
+          - "5439:5432"
+#    deploy: 
+#      replicas: 1
+    volumes:
+      - pgdata-vol:/var/lib/postgresql/data 
+    environment:
+      POSTGRES_PASSWORD: pgconf2019
+
