@@ -1,0 +1,33 @@
+paths:
+    migrations: migrations
+    seeds: seeds
+
+environments:
+    default_migration_table: phinxlog
+    default_database: production
+    production:
+        adapter: pgsql 
+        host: PROD_HOSTNAME
+        name: PROD_DBNAME 
+        user: PROD_USERNAME 
+        pass: 'PROD_PASSWORD'
+        port: PROD_PORT 
+        charset: utf8
+    
+    local:
+        adapter: pgsql
+        host: database
+        name: postgres
+        user: postgres
+        pass: 'pgconf2019'
+        port: 5432
+        charset: utf8
+
+    vagrant:
+        adapter: pgsql
+        host: 192.168.1.19
+        name: rankdone
+        user: rankdone
+        pass: '123456'
+        port: 5432
+        charset: utf8

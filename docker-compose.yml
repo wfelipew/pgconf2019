@@ -21,8 +21,20 @@ services:
      - ./src:/var/www/html/
     ports:
      - "8080:80"
+    entrypoint: ['app-entrypoint.sh']
+ 
+ 
+  migratrions:
+    container_name: migrations
+    image: hello-world
+    env_file:
+      - .env
+    volumes:
+     - cache_gamification:/var/www/app/data/cache
+     - ./src:/var/www/html/
   
   database:
+    container_name: banco
     image: postgres:10
     ports:
           - "5439:5432"

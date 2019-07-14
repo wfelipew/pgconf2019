@@ -10,4 +10,5 @@ php -r "unlink('composer-setup.php');"; \
 ln -s /bin/composer.phar /bin/composer
 RUN composer global require hirak/prestissimo
 COPY src/ /var/www/html/
+COPY app-entrypoint.sh /usr/local/bin/
 RUN composer install  --no-dev --prefer-dist
