@@ -4,7 +4,7 @@ paths:
 
 environments:
     default_migration_table: phinxlog
-    default_database: production
+    default_database: local
     production:
         adapter: pgsql 
         host: PROD_HOSTNAME
@@ -23,11 +23,3 @@ environments:
         port: 5432
         charset: utf8
 
-    vagrant:
-        adapter: pgsql
-        host: 192.168.1.19
-        name: rankdone
-        user: rankdone
-        pass: '123456'
-        port: 5432
-        charset: utf8
