@@ -11,4 +11,5 @@ ln -s /bin/composer.phar /bin/composer
 RUN composer global require hirak/prestissimo
 COPY src/ /var/www/html/
 COPY app-entrypoint.sh /usr/local/bin/
+ENV APACHE_DOCUMENT_ROOT /var/www/html/turmas/public
 RUN composer install  --no-dev --prefer-dist
