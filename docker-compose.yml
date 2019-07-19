@@ -1,7 +1,7 @@
 version: "2"
 
 volumes:
-  cache_gamification:
+  log:
   pgdata-vol:
 
 services:
@@ -17,20 +17,20 @@ services:
     env_file:
       - .env
     volumes:
-     - cache_gamification:/var/www/app/data/cache
+     - log:/var/www/html/storage/logs/
      - ./src:/var/www/html/
     ports:
      - "8080:80"
     entrypoint: ['app-entrypoint.sh']
  
  
-  migratrions:
+  migrations:
     container_name: migrations
     image: hello-world
     env_file:
       - .env
     volumes:
-     - cache_gamification:/var/www/app/data/cache
+     - log:/var/www/html/storage/logs/
      - ./src:/var/www/html/
   
   database:

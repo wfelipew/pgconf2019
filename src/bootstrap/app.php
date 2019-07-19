@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
+
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 try {
@@ -23,7 +26,7 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
-// $app->withFacades();
+ $app->withFacades();
 
 // $app->withEloquent();
 
@@ -98,5 +101,12 @@ $app->router->group([
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
 });
+
+
+
+$json = new \Monolog\Formatter\JsonFormatter();
+$stdouthandler = new \Monolog\Handler\StreamHandler('php://stdout', 'info');
+$stdouthandler->setFormatter($json);
+Log::pushHandler($stdouthandler);
 
 return $app;

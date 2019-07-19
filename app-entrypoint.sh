@@ -12,4 +12,6 @@ if [ "$APP_ENV" = "localdev" ] || [ "$APP_ENV" = "dev" ]; then
         composer install  --no-dev --prefer-dist 
 fi
 
-apache2-foreground "$@"
+chown -R www-data. /var/www/html/storage/
+
+exec apache2-foreground "$@"
