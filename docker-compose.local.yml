@@ -27,11 +27,14 @@ services:
   migrations:
     container_name: migrations
     image: pgconf-app
+    depends_on: 
+      - database
     env_file:
       - .env
     volumes:
      - log:/var/www/html/storage/logs/
      - ./src:/var/www/html/
+    entrypoint: ['migrations-entrypoint.sh']
   
   database:
     container_name: banco

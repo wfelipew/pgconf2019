@@ -30,6 +30,7 @@ services:
       - .env
     volumes:
      - log:/var/www/html/storage/logs/
+    entrypoint: ['migrations-entrypoint.sh']
 
   database:
     container_name: banco
