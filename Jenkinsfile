@@ -11,7 +11,7 @@ agent any
         stage('Unit Test')
         {
           steps {
-            sh 'docker-compose up -d'
+            sh 'docker-compose -f docker-compose.yml -f docker-compose.local.yml  up -d'
             sh  'echo "Executar testes unitarios"'
             sh 'docker-compose stop'
            }
@@ -19,7 +19,7 @@ agent any
         stage('API tests')
         {
           steps {
-           sh 'docker-compose up -d'
+           sh 'docker-compose -f docker-compose.yml -f docker-compose.local.yml  up -d'
            sh 'echo "Executar testes de API"'
            sh 'docker-compose stop'
           }

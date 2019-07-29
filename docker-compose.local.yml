@@ -20,7 +20,7 @@ services:
      - log:/var/www/html/storage/logs/
      - ./src:/var/www/html/
     ports:
-     - "8080:80"
+     - "8081:80"
     entrypoint: ['app-entrypoint.sh']
  
  
@@ -41,7 +41,7 @@ services:
     container_name: banco
     image: postgres:10
     ports:
-          - "5439:5432"
+          - "6439:5432"
 #    deploy: 
 #      replicas: 1
     volumes:
