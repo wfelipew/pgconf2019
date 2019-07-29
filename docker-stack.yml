@@ -1,0 +1,42 @@
+services:
+  base:
+    build:
+      context: /home/william/Documents/pgconf2019
+      dockerfile: Dockerfile
+    image: pgconf-app
+  database:
+    container_name: banco
+    environment:
+      POSTGRES_PASSWORD: pgconf2019
+    image: postgres:10
+    ports:
+    - 5439:5432/tcp
+    volumes:
+    - pgdata-vol:/var/lib/postgresql/data:rw
+  migrations:
+    container_name: migrations
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
+      APP_ENV: localdev
+    image: pgconf-app
+    volumes:
+    - /home/william/Documents/pgconf2019/src:/var/www/html:rw
+    - log:/var/www/html/storage/logs:rw
+  web:
+    container_name: php
+    entrypoint:
+    - app-entrypoint.sh
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
+      APP_ENV: localdev
+    image: pgconf-app
+    ports:
+    - 8080:80/tcp
+    volumes:
+    - /home/william/Documents/pgconf2019/src:/var/www/html:rw
+    - log:/var/www/html/storage/logs:rw
+version: '3.0'
+volumes:
+  log: {}
+  pgdata-vol: {}
+

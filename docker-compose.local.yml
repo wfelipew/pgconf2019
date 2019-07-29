@@ -35,6 +35,8 @@ services:
      - log:/var/www/html/storage/logs/
      - ./src:/var/www/html/
     entrypoint: ['migrations-entrypoint.sh']
+    restart_policy:
+        condition: on-failure
   
   database:
     container_name: banco

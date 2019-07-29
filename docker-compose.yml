@@ -31,6 +31,8 @@ services:
     volumes:
      - log:/var/www/html/storage/logs/
     entrypoint: ['migrations-entrypoint.sh']
+    restart_policy:
+        condition: on-failure
 
   
   database:
