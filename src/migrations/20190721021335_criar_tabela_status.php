@@ -31,6 +31,11 @@ class CriarTabelaStatus extends AbstractMigration
      */
     public function up()
     {
+        if($this->hasTable('status'))
+        {
+            return true;
+        }
+        
         $status = $this->table('status');
         $status->addColumn('name','string')
             ->addColumn('description','string',[
@@ -63,5 +68,9 @@ class CriarTabelaStatus extends AbstractMigration
         
         $status->saveData();
         $this->execute('ALTER SEQUENCE status_id_seq RESTART WITH 100');
+    }
+    
+    public function down(){
+        return true;
     }
 }

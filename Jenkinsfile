@@ -11,15 +11,17 @@ agent any
         stage('Unit Test')
         {
           steps {
-            sh 'docker-compose up'
+            sh 'docker-compose up -d'
             sh "echo Teste"
+            sh 'docker-compose stop'
            }
         }
         stage('API tests')
         {
           steps {
-            sh "inspec exec inspec/aws -t aws://us-east-1 --reporter junit:inspec/reports/aws.xml"
-            sh 'echo "Teste de infra estrutura" '
+           sh 'docker-compose up -d'
+           sh "echo Teste"
+           sh 'docker-compose stop'
           }
           post {
             always{
@@ -43,7 +45,7 @@ agent any
               inventory: 'inventory/',
               playbook: 'newplaybook.yml',
               colorized: true,
-              credentialsId: '849b3132-11ee-48d0-abb1-012d122c233d',
+              credentialsId: '',
               extras: '--extra-vars "branch=prod"'
               )
            
