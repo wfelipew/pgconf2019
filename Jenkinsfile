@@ -12,7 +12,7 @@ agent any
         {
           steps {
             sh 'docker-compose up -d'
-            sh "echo Teste"
+            sh  'echo "Executar testes unitarios"'
             sh 'docker-compose stop'
            }
         }
@@ -20,13 +20,8 @@ agent any
         {
           steps {
            sh 'docker-compose up -d'
-           sh "echo Teste"
+           sh 'echo "Executar testes de API"'
            sh 'docker-compose stop'
-          }
-          post {
-            always{
-              junit 'inspec/reports/*.xml'
-            }
           }
         }
         stage('Security tests')
