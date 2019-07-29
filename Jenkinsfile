@@ -34,7 +34,8 @@ agent any
         {
           steps {
             sh 'echo "Deploy em Producao" '
-            sh 'docker stack deploy --compose-file docker-compose.yml pgconf'           
+            sh 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml config > stack.yml'
+            sh 'docker stack deploy --compose-file stack.yml pgconf'           
           }
         }
      }

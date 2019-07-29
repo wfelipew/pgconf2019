@@ -31,7 +31,6 @@ services:
     volumes:
      - log:/var/www/html/storage/logs/
 
-  
   database:
     container_name: banco
     image: postgres:10
