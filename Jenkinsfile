@@ -33,17 +33,8 @@ agent any
         stage('Deploy')
         {
           steps {
-            sh 'echo "Producao" '
-            // sh 'git checkout master'
-            // sh 'git pull origin master'
-            ansiblePlaybook (
-              inventory: 'inventory/',
-              playbook: 'newplaybook.yml',
-              colorized: true,
-              credentialsId: '',
-              extras: '--extra-vars "branch=prod"'
-              )
-           
+            sh 'echo "Deploy em Producao" '
+            sh 'docker stack deploy --compose-file docker-compose.yml pgconf'           
           }
         }
      }
